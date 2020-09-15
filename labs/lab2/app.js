@@ -7,7 +7,7 @@ class Instrument {
     }
     playInstrument(){
 
-        console.log(this.family + " " + this.verb + " at this "+ this.loudness);
+        console.log(this.family + " " + this.verb + " at this volume: "+ this.loudness);
 
     }
 
