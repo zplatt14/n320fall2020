@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+       .clicked{
+            animation-name: clicked;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+       }
+       @keyframes clicked {
+           from{height: 1em; color: black;}
+           to{height: .5em; color: green;}
+           to{height: 4em; color: green;}
+           
+       }
+   </style>
+</head>
+<body>
+    <button id="button" onclick="clicked()">Play Animation</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
