@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mainDiv">
+        <book-view
+        v-for="(book in books":key="books.id"
+        v-bind:book="book"
+        v-if="book.seen"
+        >
+        {{book}}
+        </book-view>
+        <button v-on:click="changeBook()">Change Book</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
