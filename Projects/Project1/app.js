@@ -4,15 +4,16 @@ class ticTacToeSquare {
         this.fill = null;
     }
 }
-class player{
-    constructor(player1, player2){
+//player class where you can set player names
+class player {
+    constructor(player1, player2) {
         this.player1 = player1;
         this.player2 = player2;
     }
 }
 //class for the overall game of Tic Tac Toe
 class ticTacToe extends player {
-    constructor(player1,player2) {
+    constructor(player1, player2) {
         super(player1, player2)
         this.gameRunning = true;
         this.gameWinner = null;
@@ -20,13 +21,13 @@ class ticTacToe extends player {
         this.X = "X";
         this.playerTurn = this.O;
         this.movesCount = 0;
-        //ticTacToeSquare is related here
         this.squares = new Array(9).fill().map(s => new ticTacToeSquare());
+        this.tie = null;
 
     }
     //method for player move
     playerMove(i) {
-        //if the game is running and the square is not filled
+        //if the game is running and the square is not filled, fill square with the correct player symbol
         if (this.gameRunning && !this.squares[i].value) {
             this.squares[i].fill = this.playerTurn;
 
@@ -39,12 +40,12 @@ class ticTacToe extends player {
                 this.playerTurn = this.X;
             }
         }
-        console.log(newGame.playerTurn);
+        
     }
     //method that checks for a win
     checkWin() {
         let winningCombos = [
-            //these are numbers that reference the squares on the grid
+            //these are numbers that reference the squares on the grid and all the possible winning combinations
             [0, 1, 2],
             [3, 4, 5],
             [6, 7, 8],
@@ -65,13 +66,14 @@ class ticTacToe extends player {
 
             //checks if any of the winning combinations exist with same symbol of x or o
             if (aSquare.fill && aSquare.fill === bSquare.fill && aSquare.fill === cSquare.fill) {
+                //stops game
                 this.gameRunning = false;
-
-                if(aSquare.fill === "0"){
+                //sets the game winner
+                if (aSquare.fill === "0") {
                     this.gameWinner = this.player1;
                     console.log(this.gameWinner);
                 }
-                if(aSquare.fill === "X"){
+                if (aSquare.fill === "X") {
                     this.gameWinner = this.player2;
                     console.log(this.gameWinner);
                 }
@@ -85,19 +87,24 @@ class ticTacToe extends player {
         if (this.movesCount === 9) {
             //all 9 squares are filled up so game is over and winner becomes null
             this.gameRunning = false;
+            this.tie = true;
         }
     }
 
 
 }
 
-
-let newGame = new ticTacToe("Zach","Travis");
+//starting the game of tic tac toe
+let newGame = new ticTacToe("Zach", "Travis");
+console.log(newGame.movesCount);
 
 //vue component that passes the winner to the info bar
-Vue.component("info-view", {
+Vue.component("winner-view", {
     props: ["gameWinner"],
     template: "<span>Congratulations {{gameWinner}} has won!</span>"
+})
+Vue.component("tie-view", {
+    template: "<span>The game is a tie</span>"
 })
 //new vue to get newGame object to the HTML
 let newVue = new Vue({

@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-      #game-view{
-        width: 500px;
-        margin: 0 auto;
-        border: 1px solid black;
-      }
-      #info-bar{
-        padding: 15px;
-        font-family:'Times New Roman', Times, serif;
-        font-size: 20px;
-        font-weight: bold;
-        text-align: center;
-        background-color:#184a87;
-        color: white;
-      }
-      #game-squares{
-        height: 500px;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 25px;
-        box-sizing: border-box;
-        background-color: silver;
-      }
-      #bottom-div{
-        text-align: center;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 75px;
-      }
-      .individual-squares{
-        width: 33.33%;
-        height: 33.33%;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #game-view {
+      width: 500px;
+      margin: 0 auto;
+      border: 1px solid black;
+    }
 
-        display: flexbox;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 75px;
-        text-transform: uppercase;
-        text-align: center;
+    #info-bar {
+      padding: 15px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      background-color: #184a87;
+      color: white;
+    }
 
-      }
+    #game-squares {
+      height: 500px;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 25px;
+      box-sizing: border-box;
+      background-color: silver;
+    }
 
+    #bottom-div {
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 75px;
+    }
 
-    </style>
+    .individual-squares {
+      width: 33.33%;
+      height: 33.33%;
+
+      display: flexbox;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 75px;
+      text-transform: uppercase;
+      text-align: center;
+
+    }
+  </style>
 </head>
-<body> 
+
+<body>
   <div id="game-view">
     <div id="info-bar">
-      <info-view v-if="$data.gameWinner" v-bind:game-winner="$data.gameWinner"></info-view>
-    </div>  
+      <winner-view v-if="$data.gameWinner" v-bind:game-winner="$data.gameWinner"></winner-view>
+      <tie-view v-if="$data.tie"></tie-view>
+    </div>
     <div id="game-squares">
 
-      <div 
-      
-      v-for="(square, i) in squares"
-      v-on:click = "$data.playerMove(i)"
+      <div v-for="(square, i) in squares" v-on:click="$data.playerMove(i)" class="individual-squares">
 
-      class="individual-squares"> 
+        {{ square.fill }}
 
-      {{ square.fill }}
-
-         <svg height = "149.98" width = "149.98">
-            <rect height = "140" width = "140" fill="#184a87" style="display: block;"class="svgSquares"></rect>
-        </svg> 
+        <svg height="149.98" width="149.98">
+          <rect height="140" width="140" fill="#184a87" style="display: block;" class="svgSquares"></rect>
+        </svg>
 
       </div>
 
@@ -85,4 +85,5 @@
 
   </script>
 </body>
+
 </html>
